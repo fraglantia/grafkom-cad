@@ -26,6 +26,25 @@ void main()
     gl_FragColor = fColor;
 }
 </script>
+<body>
+    <div> 
+        <button type=button onclick="newLine()">
+            LINE
+        </button>
+        <button type=button onclick="newPolygon()">
+            POLYGON
+        </button>
+        <button type=button onclick="newSquare()">
+            SQUARE
+        </button>
+        <button type=button onclick="newCircle()">
+            CIRCLE
+        </button>
+        <button type=button onclick="clearShapes()">
+            CLEAR
+        </button>
+    </div>
+</body>
 
 <script type="text/javascript" src="./Common/webgl-utils.js"></script>
 <script type="text/javascript" src="./Common/initShaders.js"></script>
