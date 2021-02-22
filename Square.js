@@ -11,6 +11,7 @@ class Square extends Shape {
   // color: vec4
   constructor(p1, p3, color) {
     super();
+    this.name = 'square';
     this.p1 = p1;
     this.p2 = vec2(p1[0], p3[1]);;
     this.p3 = p3;

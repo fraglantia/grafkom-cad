@@ -24,14 +24,14 @@ window.onload = function init()
     program = initShaders( gl, "vertex-shader", "fragment-shader" );
     gl.useProgram( program );
 
-    const line1 = new Line(vec2(-0.75, -0.85), vec2(0.75, -0.75), blue);
-    const line2 = new Line(vec2(-0.75, 0.85), vec2(0.75, 0.75), green);
-    const square = new Square(vec2(-0.75, -0.75), vec2(-0.5, -0.5), red);
-    const polygon = new Polygon([vec2(-0.25, -0.25), vec2(-0.5, 0.5), vec2(0.0, 0.75), vec2(0.5, 0.5), vec2(0.25, -0.25)], blue);
-    shapes.push(line1);
-    shapes.push(line2);
-    shapes.push(square);
-    shapes.push(polygon);
+    // const line1 = new Line(vec2(-0.75, -0.85), vec2(0.75, -0.75), blue);
+    // const line2 = new Line(vec2(-0.75, 0.85), vec2(0.75, 0.75), green);
+    // const square = new Square(vec2(-0.75, -0.75), vec2(-0.5, -0.5), red);
+    // const polygon = new Polygon([vec2(-0.25, -0.25), vec2(-0.5, 0.5), vec2(0.0, 0.75), vec2(0.5, 0.5), vec2(0.25, -0.25)], blue);
+    // shapes.push(line1);
+    // shapes.push(line2);
+    // shapes.push(square);
+    // shapes.push(polygon);
 
     render(shapes);
 
@@ -80,6 +80,41 @@ function click(ev, canvas) {
     return vec2(x, y);
 }
 
+function exportToJSON() {
+    const element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(JSON.stringify(shapes)));
+    element.setAttribute('download', 'shapes.json');
+
+    element.style.display = 'none';
+    document.body.appendChild(element);
+
+    element.click();
+
+    document.body.removeChild(element);
+}
+
+function importFromJSON(event) {
+    var reader = new FileReader();
+
+    reader.onload = function(event) {
+        const newShapes = [];
+        const result = JSON.parse(event.target.result);
+        result.forEach((item) => {
+            if(item.name === 'polygon') {
+                newShapes.push(new Polygon(item.points, item.color));
+            }
+            if(item.name === 'line') {
+                newShapes.push(new Line(item.p1, item.p2, item.color));
+            }
+            if(item.name === 'square') {
+                newShapes.push(new Square(item.p1, item.p3, item.color));
+            }
+        });
+        shapes = newShapes;
+    }
+    reader.readAsText(event.target.files[0]);
+}
+
 // shapes: Shape[]
 function getIntersectingControlPoint(shapes, center) {
     let result = null;
@@ -115,12 +150,6 @@ function newPolygon(){
 function newSquare(){
     const square = new Square(vec2(-0.75, -0.75), vec2(-0.5, -0.5), red);
     shapes.push(square);
-    render(shapes);
-}
-
-function newCircle(){
-    const circle = new Circle(vec2(-0.75, 0.85), 0.2, green);
-    shapes.push(circle);
     render(shapes);
 }
 

@@ -2,7 +2,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 <link rel="stylesheet" href="webgl.css">
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 <script id="vertex-shader" type="x-shader/x-vertex">
 attribute vec4 vPosition;
 attribute vec4 vColor;
@@ -25,30 +28,11 @@ void main()
 {
     gl_FragColor = fColor;
 }
-</script>
-<body>
-    <div> 
-        <button type=button onclick="newLine()">
-            LINE
-        </button>
-        <button type=button onclick="newPolygon()">
-            POLYGON
-        </button>
-        <button type=button onclick="newSquare()">
-            SQUARE
-        </button>
-        <button type=button onclick="newCircle()">
-            CIRCLE
-        </button>
-        <button type=button onclick="clearShapes()">
-            CLEAR
-        </button>
-    </div>
-</body>
 
-<script type="text/javascript" src="./Common/webgl-utils.js"></script>
-<script type="text/javascript" src="./Common/shader-init.js"></script>
-<script type="text/javascript" src="./Common/math-utils.js"></script>
+</script>
+<script type="text/javascript" src="./Utils/webgl-utils.js"></script>
+<script type="text/javascript" src="./Utils/shader-init.js"></script>
+<script type="text/javascript" src="./Utils/math-utils.js"></script>
 <script type="text/javascript" src="Circle.js"></script>
 <script type="text/javascript" src="ControlPoint.js"></script>
 <script type="text/javascript" src="Shape.js"></script>
@@ -59,12 +43,61 @@ void main()
 </head>
 
 <body>
-<canvas id="gl-canvas" width="512" height="512">
-Oops ... your browser doesn't support the HTML5 canvas element
-</canvas>
-<br/>
-<button onclick="exportToJSON()">Export</button>
-<input onchange="importFromJSON(event)" class='file-upload-button' type="file" />
+    <div class="jumbotron text-center">
+        
+        <h3 class="mt-n5">Grafkom-CAD</h3>
+        
+        <div class="container mt-3"> 
+            <button type=button onclick="newLine()" class="btn btn-light btn-sm">
+                Line
+            </button>
+            <button type=button onclick="newPolygon()" class="btn btn-light btn-sm">
+                Polygon
+            </button>
+            <button type=button onclick="newSquare()" class="btn btn-light btn-sm">
+                Square
+            </button>
+            <button type=button onclick="clearShapes()" class="btn btn-light btn-sm">
+                Clear
+            </button>
+            <button type=button class="btn btn-light btn-sm" data-toggle="modal" data-target="#helpModal">
+                Help
+            </button>
+        </div>
+        
+        <div class="container mt-2 small">
+            <label class="btn-sm" for="shape-color">Select Color:</label>
+            <input type="color" id="shape-color" name="shape-color" value="#ff0000">
+            <label class="btn-sm" for="polygon-num">Polygon Sides:</label>
+            <input type="number" id="polygon-num" name="polygon-num" value=3 min=3 max=16>
+        </div>
+        <canvas id="gl-canvas" width="512" height="512">
+        Oops ... your browser doesn't support the HTML5 canvas element
+        </canvas>
+        
+        <div class="container mt-2">
+            <button onclick="exportToJSON()" class="btn btn-light btn-sm">Export</button>
+            <span class="btn btn-light btn-file btn-sm">
+                Import <input type="file" onchange="importFromJSON(event)" class="file-upload-button">
+            </span>
+        </div>
+
+    </div>
+
+    <div class="modal fade" id="helpModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Help Text</p>
+                <p>Help Text</p>
+            </div>
+        </div>
+        
+        </div>
+    </div>
 
 </body>
 </html>

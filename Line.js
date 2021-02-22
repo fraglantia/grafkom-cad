@@ -4,6 +4,7 @@ class Line extends Shape {
   // color: vec4
   constructor(p1, p2, color) {
     super();
+    this.name = 'line';
     this.p1 = p1;
     this.p2 = p2;
     const c1 = new ControlPoint(p1, (center) => { this.p1 = center });

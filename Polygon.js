@@ -3,6 +3,7 @@ class Polygon extends Shape {
   // color: vec4
   constructor(points, color) {
     super();
+    this.name = 'polygon';
     this.points = points;
     this.controlPoints = [];
     for(let i=0; i<points.length; i++) {
