@@ -7,16 +7,16 @@ var shapes = [];
 
 window.onload = function init()
 {
-    var canvas = document.getElementById( "gl-canvas" );
+    var canvas = document.getElementById("gl-canvas");
     
-    gl = WebGLUtils.setupWebGL( canvas );
-    if ( !gl ) { alert( "WebGL isn't available" ); }
+    gl = WebGLUtils.setupWebGL(canvas);
+    if ( !gl ) { alert("WebGL isn't available"); }
 
     //
     //  Configure WebGL
     //
-    gl.viewport( 0, 0, canvas.width, canvas.height );
-    gl.clearColor( 1.0, 1.0, 1.0, 1.0 );
+    gl.viewport(0, 0, canvas.width, canvas.height);
+    gl.clearColor(1.0, 1.0, 1.0, 1.0);
     
     //  Load shaders and initialize attribute buffers
     program = initShaders( gl, "vertex-shader", "fragment-shader" );
@@ -143,7 +143,7 @@ function render(shapes) {
 };
 
 function newLine(){
-    const line = new Line(vec2(0.20, 0.20), vec2(-0.20, -0.20), grey);
+    const line = new Line(vec2(0.20, 0.20), vec2(-0.20, -0.20), getColor());
     shapes.push(line);
     render(shapes);
 }
@@ -158,13 +158,13 @@ function newPolygon(){
         vertices.push(rotateOrigin(i*360/sides, init));
     }
 
-    const polygon = new Polygon(vertices, grey);
+    const polygon = new Polygon(vertices, getColor());
     shapes.push(polygon);
     render(shapes);
 }
 
 function newSquare(){
-    const square = new Square(vec2(0.20, 0.20), vec2(-0.20, -0.20), grey);
+    const square = new Square(vec2(0.20, 0.20), vec2(-0.20, -0.20), getColor());
     shapes.push(square);
     render(shapes);
 }
