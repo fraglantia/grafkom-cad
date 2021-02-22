@@ -1,8 +1,6 @@
 var gl;
 var program;
 
-const grey = vec4( 0.5, 0.5, 0.5, 1.0 );
-
 var shapes = [];
 
 window.onload = function init()
