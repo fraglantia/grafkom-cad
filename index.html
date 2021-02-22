@@ -45,7 +45,7 @@ void main()
 <body>
     <div class="jumbotron text-center">
         
-        <h3 class="mt-n5">Grafkom-CAD</h3>
+        <h4 class="mt-n5">Grafkom-CAD</h4>
         
         <div class="container mt-3"> 
             <button type=button onclick="newLine()" class="btn btn-light btn-sm">
@@ -69,10 +69,25 @@ void main()
             <label class="btn-sm" for="shape-color">Select Color:</label>
             <input type="color" id="shape-color" name="shape-color" value="#ff0000">
             <label class="btn-sm" for="polygon-num">Polygon Sides:</label>
-            <input type="number" id="polygon-num" name="polygon-num" value=3 min=3 max=16>
+            <input type="number" id="polygon-num" name="polygon-num" value=3 min=3 max=20>
+            <div class="form-check">
+            <input class="form-check-input" type="radio" name="mouseControl" id="moveDrag" checked>
+            <label class="form-check-label" for="moveDrag">
+                Move & Drag
+            </label>
+            </div>
+            <div class="form-check">
+            <input class="form-check-input" type="radio" name="mouseControl" id="changeColor">
+            <label class="form-check-label" for="changeColor">
+                Change Color
+            </label>
+            </div>
         </div>
-        <canvas id="gl-canvas" width="512" height="512">
-        Oops ... your browser doesn't support the HTML5 canvas element
+
+        
+
+        <canvas id="gl-canvas" width="512" height="512" class="mt-2">
+            Oops ... your browser doesn't support the HTML5 canvas element
         </canvas>
         
         <div class="container mt-2">
@@ -90,9 +105,10 @@ void main()
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
-            <div class="modal-body">
-                <p>Help Text</p>
-                <p>Help Text</p>
+            <div class="modal-body small">
+                <p>To draw shapes, click on one of the shape buttons, for polygons, you can input the number of sides you want from "Polygon Sides". All shapes will be rendered in the middle of the canvas.</p>
+                <p>To move control points, select "Move & Drag", drag the control points of the shape to be moved.</p>
+                <p>To change shape color, select "Change Color", pick the color you want from "Select Color", then click on one of the control points.</p>
             </div>
         </div>
         

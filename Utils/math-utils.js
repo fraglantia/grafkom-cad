@@ -182,6 +182,23 @@ function scale( s, u )
     return result;
 }
 
+function rotateOrigin( angle, u )
+{
+
+    var c = Math.cos( radians(angle) );
+    var s = Math.sin( radians(angle) );
+
+    if ( !Array.isArray(u) ) {
+        throw "rotateOrigin: second parameter " + u + " is not a vector";
+    }
+
+    var result = [];
+    result.push( c * u[0] - s * u[1] );
+    result.push( s * u[0] + c * u[1] );
+
+    return result;
+}
+
 function flatten( v )
 {
     if ( v.matrix === true ) {

@@ -1,9 +1,7 @@
 var gl;
 var program;
 
-const red = vec4( 1.0, 0.0, 0.0, 1.0 );
-const green = vec4( 0.0, 1.0, 0.0, 1.0 );
-const blue = vec4( 0.0, 0.0, 1.0, 1.0 );
+const grey = vec4( 0.5, 0.5, 0.5, 1.0 );
 
 var shapes = [];
 
@@ -23,15 +21,6 @@ window.onload = function init()
     //  Load shaders and initialize attribute buffers
     program = initShaders( gl, "vertex-shader", "fragment-shader" );
     gl.useProgram( program );
-
-    // const line1 = new Line(vec2(-0.75, -0.85), vec2(0.75, -0.75), blue);
-    // const line2 = new Line(vec2(-0.75, 0.85), vec2(0.75, 0.75), green);
-    // const square = new Square(vec2(-0.75, -0.75), vec2(-0.5, -0.5), red);
-    // const polygon = new Polygon([vec2(-0.25, -0.25), vec2(-0.5, 0.5), vec2(0.0, 0.75), vec2(0.5, 0.5), vec2(0.25, -0.25)], blue);
-    // shapes.push(line1);
-    // shapes.push(line2);
-    // shapes.push(square);
-    // shapes.push(polygon);
 
     render(shapes);
 
@@ -136,19 +125,29 @@ function render(shapes) {
 };
 
 function newLine(){
-    const line = new Line(vec2(-0.75, -0.85), vec2(0.75, -0.75), blue);
+    const line = new Line(vec2(0.20, 0.20), vec2(-0.20, -0.20), grey);
     shapes.push(line);
     render(shapes);
 }
 
 function newPolygon(){
-    const polygon = new Polygon([vec2(-0.25, -0.25), vec2(-0.5, 0.5), vec2(0.0, 0.75), vec2(0.5, 0.5), vec2(0.25, -0.25)], blue);
+    const sides = document.getElementById("polygon-num").value;
+    console.log(sides);
+    const init = vec2(0, 0.2);
+    const vertices = [];
+
+    vertices.push(init);
+    for(let i=1; i<sides; i++){
+        vertices.push(rotateOrigin(i*360/sides, init));
+    }
+
+    const polygon = new Polygon(vertices, grey);
     shapes.push(polygon);
     render(shapes);
 }
 
 function newSquare(){
-    const square = new Square(vec2(-0.75, -0.75), vec2(-0.5, -0.5), red);
+    const square = new Square(vec2(0.20, 0.20), vec2(-0.20, -0.20), grey);
     shapes.push(square);
     render(shapes);
 }
