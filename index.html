@@ -28,8 +28,8 @@ void main()
 </script>
 
 <script type="text/javascript" src="./Common/webgl-utils.js"></script>
-<script type="text/javascript" src="./Common/initShaders.js"></script>
-<script type="text/javascript" src="./Common/MV.js"></script>
+<script type="text/javascript" src="./Common/shader-init.js"></script>
+<script type="text/javascript" src="./Common/math-utils.js"></script>
 <script type="text/javascript" src="Circle.js"></script>
 <script type="text/javascript" src="ControlPoint.js"></script>
 <script type="text/javascript" src="Shape.js"></script>
@@ -44,6 +44,8 @@ void main()
 Oops ... your browser doesn't support the HTML5 canvas element
 </canvas>
 <br/>
+<button onclick="exportToJSON()">Export</button>
+<input onchange="importFromJSON(event)" class='file-upload-button' type="file" />
 
 </body>
 </html>
