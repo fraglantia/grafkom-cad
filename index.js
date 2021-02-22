@@ -30,6 +30,12 @@ window.onload = function init()
         const center = click(ev, canvas);
         if(!dragItem) {
             dragItem = getIntersectingControlPoint(shapes, center);
+            const mouseControl = document.querySelector('input[name="mouseControl"]:checked').id;
+            if (mouseControl == 'changeColor' && dragItem && dragItem.parent) {
+                dragItem.parent.changeColor(getColor());
+                dragItem = null;
+                render(shapes);
+            };
         }
     };
 
@@ -60,6 +66,17 @@ window.onload = function init()
     };
 };
 
+function getColor() {
+    const colorCode = document.getElementById('shape-color').value;
+    let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(colorCode);
+    return result ? vec4(
+        parseInt(result[1], 16)/255,
+        parseInt(result[2], 16)/255,
+        parseInt(result[3], 16)/255,
+        1.0
+    ) : null;
+}
+
 function click(ev, canvas) {
     var x = ev.clientX;
     var y = ev.clientY;
@@ -72,7 +89,7 @@ function click(ev, canvas) {
 function exportToJSON() {
     const element = document.createElement('a');
     element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(JSON.stringify(shapes)));
-    element.setAttribute('download', 'shapes.json');
+    element.setAttribute('download', new Date().toISOString().substring(0, 16) + 'shapes.json');
 
     element.style.display = 'none';
     document.body.appendChild(element);
@@ -100,6 +117,7 @@ function importFromJSON(event) {
             }
         });
         shapes = newShapes;
+        render(shapes);
     }
     reader.readAsText(event.target.files[0]);
 }
@@ -132,7 +150,6 @@ function newLine(){
 
 function newPolygon(){
     const sides = document.getElementById("polygon-num").value;
-    console.log(sides);
     const init = vec2(0, 0.2);
     const vertices = [];
 

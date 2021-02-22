@@ -3,7 +3,8 @@ const RADIUS = 0.02;
 class ControlPoint {
   // center: vec2
   // moveCallback: (center) => void
-  constructor(center, moveCallback=(center)=>{}) {
+  constructor(center, moveCallback=(center)=>{}, parent=null) {
+    this.parent = parent;
     this.center = center;
     this.fill = new Circle(center, RADIUS, vec4(1.0, 1.0, 1.0, 1.0));
     this.border = new Circle(center, RADIUS, vec4(0.0, 0.0, 0.0, 1.0), true);
@@ -39,4 +40,14 @@ class ControlPoint {
       this.border.draw();
     }
   }
+
+  toJSON() {
+    var result = {};
+    for (var x in this) {
+        if (x !== "parent") {
+            result[x] = this[x];
+        }
+    }
+    return result;
+  };
 }

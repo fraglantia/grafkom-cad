@@ -7,12 +7,11 @@ class Polygon extends Shape {
     this.points = points;
     this.controlPoints = [];
     for(let i=0; i<points.length; i++) {
-      const controlPoint = new ControlPoint(points[i], (center) => { points[i] = center });
+      const controlPoint = new ControlPoint(points[i], (center) => { points[i] = center }, this);
       this.controlPoints.push(controlPoint);
     }
     this.color = color;
   }
-
 
   draw() {
     const colorBuf = new Array(this.points.length).fill(this.color);

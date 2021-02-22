@@ -9,6 +9,10 @@ class Shape {
     }
   }
 
+  changeColor(color){
+    this.color = color;
+  }
+
   drawControlPoints() {
     this.controlPoints.forEach((controlPoint) => {
       controlPoint.draw();

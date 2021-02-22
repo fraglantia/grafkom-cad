@@ -7,8 +7,8 @@ class Line extends Shape {
     this.name = 'line';
     this.p1 = p1;
     this.p2 = p2;
-    const c1 = new ControlPoint(p1, (center) => { this.p1 = center });
-    const c2 = new ControlPoint(p2, (center) => { this.p2 = center });
+    const c1 = new ControlPoint(p1, (center) => { this.p1 = center }, this);
+    const c2 = new ControlPoint(p2, (center) => { this.p2 = center }, this);
     this.controlPoints = [c1, c2]
     this.color = color;
   }

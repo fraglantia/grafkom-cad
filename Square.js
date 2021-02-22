@@ -16,10 +16,10 @@ class Square extends Shape {
     this.p2 = vec2(p1[0], p3[1]);;
     this.p3 = p3;
     this.p4 = vec2(p3[0], p1[1]);
-    this.c1 = new ControlPoint(this.p1, (center) => { this.moveP1(center) });
-    this.c2 = new ControlPoint(this.p2, (center) => { this.moveP2(center) });
-    this.c3 = new ControlPoint(this.p3, (center) => { this.moveP3(center) });
-    this.c4 = new ControlPoint(this.p4, (center) => { this.moveP4(center) });
+    this.c1 = new ControlPoint(this.p1, (center) => { this.moveP1(center) }, this);
+    this.c2 = new ControlPoint(this.p2, (center) => { this.moveP2(center) }, this);
+    this.c3 = new ControlPoint(this.p3, (center) => { this.moveP3(center) }, this);
+    this.c4 = new ControlPoint(this.p4, (center) => { this.moveP4(center) }, this);
     this.controlPoints = [this.c1, this.c2, this.c3, this.c4]
     this.color = color;
   }
