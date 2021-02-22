@@ -99,3 +99,32 @@ function render(shapes) {
         shape.draw();
     });
 };
+
+function newLine(){
+    const line = new Line(vec2(-0.75, -0.85), vec2(0.75, -0.75), blue);
+    shapes.push(line);
+    render(shapes);
+}
+
+function newPolygon(){
+    const polygon = new Polygon([vec2(-0.25, -0.25), vec2(-0.5, 0.5), vec2(0.0, 0.75), vec2(0.5, 0.5), vec2(0.25, -0.25)], blue);
+    shapes.push(polygon);
+    render(shapes);
+}
+
+function newSquare(){
+    const square = new Square(vec2(-0.75, -0.75), vec2(-0.5, -0.5), red);
+    shapes.push(square);
+    render(shapes);
+}
+
+function newCircle(){
+    const circle = new Circle(vec2(-0.75, 0.85), 0.2, green);
+    shapes.push(circle);
+    render(shapes);
+}
+
+function clearShapes(){
+    shapes = [];
+    gl.clear( gl.COLOR_BUFFER_BIT );
+}
