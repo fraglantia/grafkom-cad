@@ -34,4 +34,18 @@ class Polygon extends Shape {
 
     this.drawControlPoints();
   }
+
+  toJSON() {
+    var result = {};
+    for (var x in this) {
+        if (
+          x === "name" ||
+          x === "color" ||
+          x === "points"
+        ) {
+            result[x] = this[x];
+        }
+    }
+    return result;
+  };
 }

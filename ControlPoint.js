@@ -40,14 +40,4 @@ class ControlPoint {
       this.border.draw();
     }
   }
-
-  toJSON() {
-    var result = {};
-    for (var x in this) {
-        if (x !== "parent") {
-            result[x] = this[x];
-        }
-    }
-    return result;
-  };
 }

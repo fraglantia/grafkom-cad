@@ -35,4 +35,19 @@ class Line extends Shape {
 
     this.drawControlPoints();
   }
+
+  toJSON() {
+    var result = {};
+    for (var x in this) {
+        if (
+          x === "name" ||
+          x === "color" ||
+          x === "p1" ||
+          x === "p2"
+        ) {
+            result[x] = this[x];
+        }
+    }
+    return result;
+  };
 }
